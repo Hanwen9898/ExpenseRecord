@@ -34,7 +34,7 @@ export class ToDoService {
   createOne(body: ToDoItem): Observable<ToDoItem> {
     const todo: ToDoItem = {
       ...body,
-      id: uuidv4(),
+      Id: uuidv4(),
       createtime: new Date().toISOString()
     };
     this.http.post<ToDoItem>(`${this.todosUrl}/api/items/`, todo,httpOptions).subscribe();

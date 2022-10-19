@@ -1,6 +1,7 @@
 export interface ToDoItem {
-  id: string;
-  name: string;
+  Id: string;
+  Name: string;
+  Type: string;
+  Amount:number;
   createtime: string;
-  done: boolean;
 }

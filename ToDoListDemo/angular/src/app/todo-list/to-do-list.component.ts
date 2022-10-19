@@ -41,53 +41,10 @@ export class ToDoListComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  onSearchTextChange(text: string): void {
-    this.searchString = text;
-    this.displayList = this.searchString ? this.fullList.filter(i => i.name.toLowerCase().includes(this.searchString.toLowerCase())) : this.fullList.slice();
-  }
-
-  toggleSortByDesc(): void {
-    switch (this.sortByDescDir) {
-      case SortDir.Asc:
-        this.sortByDescDir = SortDir.Desc;
-        break;
-      case SortDir.Desc:
-        this.sortByDescDir = undefined;
-        break;
-      default:
-        this.sortByDescDir = SortDir.Asc;
-    }
-    this.displayList = [...this.displayList.sort((i1, i2) => i1.name.localeCompare(i2.name) * (this.sortByDescDir === SortDir.Asc ? 1 : -1))];
-  }
-
-  toggleSortByDate(): void {
-    switch (this.sortByDateDir) {
-      case SortDir.Asc:
-        this.sortByDateDir = SortDir.Desc;
-        break;
-      case SortDir.Desc:
-        this.sortByDateDir = undefined;
-        break;
-      default:
-        this.sortByDateDir = SortDir.Asc;
-    }
-    this.displayList = [... this.displayList.sort((i1, i2) => (new Date(i1.createtime).getTime() - new Date(i2.createtime).getTime()) * (this.sortByDateDir === SortDir.Asc ? 1 : -1))];
-    console.log(this.displayList);
-  }
-
-  toggleHideDone(): void {
-    this.hideDone = !this.hideDone;
-    this.displayList = this.hideDone ? this.fullList.filter(i => !i.done) : this.fullList.slice();
-  }
-
-  toggleItemDone(item: ToDoItem): void {
-    const oldValue = item.done;
-    item.done = !item.done;
-    this.todoService.updateOne(item.id, item);
-  }
+  
 
   async navToItem(item: ToDoItem): Promise<boolean> {
-    return this.router.navigate(['item', item.id], {
+    return this.router.navigate(['item', item.Id], {
       relativeTo: this.route.parent
     });
   }

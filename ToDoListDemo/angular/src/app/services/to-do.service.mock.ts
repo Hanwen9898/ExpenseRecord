@@ -18,13 +18,13 @@ export class ToDoServiceMock {
   }
 
   getOne(id: string, todos: ToDoItem[]): ToDoItem | undefined {
-    return todos.find(t => t.id === id);
+    return todos.find(t => t.Id === id);
   }
 
   createOne(body: ToDoItem, todos: ToDoItem[]): ToDoItem {
     const todo: ToDoItem = {
       ...body,
-      id: uuidv4(),
+      Id: uuidv4(),
       createtime: new Date().toISOString()
     };
     todos.push(todo);
@@ -32,24 +32,24 @@ export class ToDoServiceMock {
   }
 
   updateOne(id: string, body: ToDoItem, todos: ToDoItem[]): ToDoItem {
-    const todo: ToDoItem | undefined = todos.find(t => t.id === id);
+    const todo: ToDoItem | undefined = todos.find(t => t.Id === id);
     if (todo) {
-      todo.done = body.done;
-      todo.name = body.name;
+      todo.Name = body.Name;
       return todo;
     }
     else {
       return {
-        'id': '',
-        'name': '',
+        'Id': '',
+        'Name': '',
         'createtime': '',
-        'done': true
+        'Type':'',
+         Amount:0
       };
     }
   }
 
   deleteOne(id: string, todos: ToDoItem[]): Observable<string> {
-    const index: number = todos.findIndex(t => t.id === id);
+    const index: number = todos.findIndex(t => t.Id === id);
     todos.splice(index, 1);
     this.write(todos);
     return of(id);

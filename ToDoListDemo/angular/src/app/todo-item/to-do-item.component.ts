@@ -17,10 +17,12 @@ export class ToDoItemComponent implements OnInit {
 
   constructor(private toDoService: ToDoService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
     this.item = {
-      id: 'new',
+      Id: 'new',
       createtime: new Date().toISOString(),
-      name: '',
-      done: false
+      Name: '',
+      Type: '',
+      Amount:0
+
     };
     this.form = this.fb.group({
       name: this.fb.control('', [Validators.required]),
@@ -28,8 +30,7 @@ export class ToDoItemComponent implements OnInit {
       favorite: this.fb.control('')
     });
     this.form.valueChanges.subscribe(() => {
-      this.item.name = this.form.get('name')?.value ?? '';
-      this.item.done = this.form.get('done')?.value ?? false;
+      this.item.Name = this.form.get('name')?.value ?? '';
     });
   }
 
@@ -66,7 +67,7 @@ export class ToDoItemComponent implements OnInit {
 
   save(): void {
     if (!this.isNewItem()) {
-      this.toDoService.updateOne(this.item.id, this.item).subscribe(() => {
+      this.toDoService.updateOne(this.item.Id, this.item).subscribe(() => {
         this.form.markAsPristine();
         this.navToList();
       }, () => {
@@ -74,7 +75,7 @@ export class ToDoItemComponent implements OnInit {
       });
     } else {
       this.toDoService.createOne(this.item).subscribe(item => {
-        this.item.id = item.id;
+        this.item.Id = item.Id;
         this.item.createtime = item.createtime;
         this.form.markAsPristine();
         this.navToList();
@@ -88,7 +89,7 @@ export class ToDoItemComponent implements OnInit {
     const ok = confirm(`Delete this item?`);
     if (ok) {
       if (!this.isNewItem()) {
-        this.toDoService.deleteOne(this.item.id).subscribe(() => {
+        this.toDoService.deleteOne(this.item.Id).subscribe(() => {
           this.navToList();
         });
       } else {
@@ -98,7 +99,7 @@ export class ToDoItemComponent implements OnInit {
   }
 
   isNewItem(): boolean {
-    return this.item.id === 'new';
+    return this.item.Id === 'new';
   }
 
   private loadData(id: string): void {
@@ -116,8 +117,7 @@ export class ToDoItemComponent implements OnInit {
 
   private patchFormWithItem(item: ToDoItem): void {
     this.form.patchValue({
-      name: item.name,
-      done: item.done
+      name: item.Name,
     });
   }
 }

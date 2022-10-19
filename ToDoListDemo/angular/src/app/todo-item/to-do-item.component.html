@@ -11,7 +11,7 @@
 
 <div class="footer">
   <div>
-    <span *ngIf="item.id && !isNewItem()">   
+    <span *ngIf="item.Id && !isNewItem()">   
       <button (click)="delete()" [disabled]="form.invalid" class="button-blue">Delete</button>
       Create on {{item.createtime | date}}
     </span>  
