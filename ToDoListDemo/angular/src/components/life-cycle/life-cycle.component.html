@@ -1,0 +1,18 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">{{title}}</div>
+  <div class="panel-body">
+    <p *ngFor="let log of logs;let i=index;">
+      {{log}}
+    </p>
+  </div>
+</div>
+
+
+<div class="parent">
+  <div>
+    问候语：<input type="text" [(ngModel)]="greeting">
+  </div>
+  <div>
+    姓名:<input type="text" [(ngModel)]="user.name">
+  </div>
+</div>

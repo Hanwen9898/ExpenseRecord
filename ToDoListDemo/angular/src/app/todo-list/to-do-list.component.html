@@ -1,0 +1,16 @@
+<div class="title">
+  <span>Record System</span>
+</div>
+
+<div class="list">
+  <ng-container *ngFor="let item of displayList ">
+    <div (click)="navToItem(item)" class="item">
+      <input (click)="$event.stopPropagation()" (ngModelChange)="toggleItemDone(item)" [ngModel]="item.done"
+        type="checkbox">
+      <span class="item-desc">{{item.name}}</span>
+    </div>
+  </ng-container>
+</div>
+<div class="create-item">
+  <button (click)="navToCreateNew()" class="button-blue">Create Item</button>
+</div>

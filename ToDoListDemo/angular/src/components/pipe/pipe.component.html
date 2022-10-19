@@ -1,0 +1,17 @@
+<div *ngIf="errorMessage">
+  <div>
+    test 1
+  </div>
+  <div>
+    {{errorMessage | formatError:"test1"}}
+  </div>
+</div>
+
+<div *ngIf="errorMessage">
+  <div>
+    test 2
+  </div>
+  <div>
+    {{errorMessage | formatError:"test2"}}
+  </div>
+</div>

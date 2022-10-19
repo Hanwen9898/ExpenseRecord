@@ -1,0 +1,78 @@
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: relative;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  padding-top: 10px;
+  display: flex;
+
+  > input {
+    flex: 1;
+  }
+
+  > button {
+    margin-left: 10px;
+  }
+}
+
+.list-actions {
+  display: flex;
+  padding: 10px 0;
+
+  > button {
+    flex: 1;
+  }
+}
+
+.list {
+  padding: 20px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid black;
+}
+
+.create-item {
+  padding-top: 10px;
+
+  > button {
+    width: 100%;
+  }
+}
+
+.item {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  & + .item {
+    margin-top: 10px;
+  }
+
+  > .item-desc {
+    padding: 0 20px;
+    flex: 1;
+  }
+
+  > .item-progress {
+    color: gray;
+  }
+
+  > .item-fav {
+    margin-left: 10px;
+  }
+}

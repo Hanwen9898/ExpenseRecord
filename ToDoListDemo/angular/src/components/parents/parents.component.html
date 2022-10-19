@@ -1,0 +1,12 @@
+<div class="parent">
+  this is parent component
+
+  <child1-component [title]="title1" (newItemEvent)="testItem($event)"></child1-component>
+  <child2-component [title]="title2" (newItemEvent)="testItem($event)"></child2-component>
+</div>
+
+<div class="panel-body">
+  <p *ngFor="let log of logs;let i=index;">
+    {{log}}
+  </p>
+</div>
